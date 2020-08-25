@@ -1,11 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+# Gets IDs of structures in the PDB according to an XML query using Python 2
+# Based on https://www.rcsb.org/pdb/software/static.do?p=/software/webservices/search_nmr.jsp
+
 import urllib2
 
 url = 'http://www.rcsb.org/pdb/rest/search'
+url = 'http://httpbin.org/post'
 
-queryText = """
+xml = """
 <?xml version="1.0" encoding="UTF-8"?>
 <orgPdbQuery>
     <version>B0907</version>
@@ -15,15 +19,12 @@ queryText = """
 </orgPdbQuery>
 """
 
-req = urllib2.Request(url, data = queryText)
+req = urllib2.Request(url, data = xml)
 
 result = urllib2.urlopen(req).read()
 
 if result:
-
-    print "Found number of PDB entries:", result.count('\n')
     print result
-
+    print "Found number of PDB entries:", result.count('\n')
 else:
-
     print "Failed to retrieve results"
