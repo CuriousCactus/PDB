@@ -7,7 +7,7 @@
 import urllib2
 
 url = 'http://www.rcsb.org/pdb/rest/search'
-url = 'http://httpbin.org/post'
+#url = 'http://httpbin.org/post'
 
 xml = """
 <?xml version="1.0" encoding="UTF-8"?>

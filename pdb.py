@@ -5,7 +5,7 @@
 # Uses the requests module instead of urllib2, as requests is more modern
 
 # Note the artificial splitting of the xml query into a key:value pair
-# This is needed because if xml is passed to requests.post as one string it is interpreted as data, whereas if it is passed as a key:value pair it is interpreted as the input to a form
+# This is needed because if xml is passed to requests.post() as one string it is interpreted as data, whereas if it is passed as a key:value pair it is interpreted as the input to a form
 # If the query is passed as data the request doesn't work and the html of the whole search page is returned
 
 # If urllib2 is given an xml query which is not in key:value format it forces it into that format and treats it as the input to a form, which works fine
