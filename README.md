@@ -8,7 +8,7 @@ Align them
 
 Was first using this:
 http://www.rcsb.org/pdb/software/rest.do
-Uses xml, probably out of data, couldn't work out how to do similarity searches with it
+Uses xml, probably out of date, couldn't work out how to do similarity searches with it
 
 These are in the documentation but don't work:
 url = "http://www.rcsb.org/pdb/explorer/structCompXMLData.jsp?method=pw_fatcat&chain=d3bmva1&page=1&rows=10&prettyXML"
