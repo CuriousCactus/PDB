@@ -1,15 +1,4 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
-import requests
-
-url = "http://www.rcsb.org/search"
-url = "http://search.rcsb.org/rcsbsearch/v1/query"
-# url = 'http://httpbin.org/post'
-
-id = "6B8A"
-
-json = {
+{
     "query": {
         "type": "group",
         "logical_operator": "and",
@@ -18,7 +7,7 @@ json = {
             "service": "structure",
             "parameters": {
                 "value": {
-                    "entry_id": id,
+                    "entry_id": "6B8A",
                     "assembly_id": "1"
                 },
                 "operator": "strict_shape_match"
@@ -41,20 +30,3 @@ json = {
         }]
     }
 }
-
-result = requests.post(url, json=json)
-matches = result.json()['result_set']
-
-if result:
-    for match in matches:
-        print(
-            match['identifier']
-            + ", score: "
-            + str(round(match['score'], 3))
-            + ", original_score: "
-            + str(round(match['services'][0]['nodes'][0]['original_score'], 1))
-        )
-        pass
-    print("Found number of PDB entries:", len(matches))
-else:
-    print("Failed to retrieve results")
