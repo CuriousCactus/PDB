@@ -15,29 +15,30 @@ pymol.cmd.set('fetch_path', "files/")
 # Search for similar proteins using PDB API
 
 url = "http://search.rcsb.org/rcsbsearch/v1/query"
-# url = 'http://httpbin.org/post'
 
 with open('query.json') as json_file:
     json = json.load(json_file)
 
 result = requests.post(url, json=json)
 matches = result.json()['result_set']
-#del matches[0]
 
 if result:
+    # Iterate throught the results list
     for match in matches:
-        # Fetch the files for the similar proteins
+        # Set variables
         id = match['identifier']
-        filename = "files/" + id.lower() + ".cif"
-        aligned_filename = "files/" + id.lower() + "_aligned.cif"
         aligned_png_filename = "files/" + id.lower() + "_aligned.png"
+
+        # Fetch the file
         pymol.cmd.fetch(id)
-        #pymol.cmd.load(filename)
+
+        # Align the similar protein against the original protein
         alignment = pymol.cmd.align("6B8A", id)
-        #pymol.cmd.save(aligned_filename)
-        #pymol.cmd.load(aligned_filename)
+
+        # Export a png of the alignment
         pymol.cmd.png(aligned_png_filename)
 
+        # Print alignment scores
         print(
             match['identifier']
             + ", score: "
